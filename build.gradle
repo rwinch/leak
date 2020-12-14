@@ -1,0 +1,52 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'pl.pancordev'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    maven {
+        url 'https://archiva.nowatel.com:8081/repository/internal'
+    }
+    maven {
+        url 'https://archiva.nowatel.com:8081/repository/snapshots'
+    }
+    jcenter()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation "org.springframework.boot:spring-boot-starter-websocket"
+    implementation "org.springframework.security:spring-security-messaging"
+    implementation 'org.springframework.security:spring-security-oauth2-jose'
+    implementation 'org.springframework.security:spring-security-oauth2-resource-server'
+    implementation 'org.modelmapper:modelmapper:2.3.0'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2'
+    implementation 'mysql:mysql-connector-java'
+    implementation 'com.nowatel:moodle:0.1.0-SNAPSHOT'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+
+    jvmArgs = [
+            "-Dspring.test.context.cache.maxSize=1",
+            "-Dlogging.level.org.springframework.test.context.cache=DEBUG",
+            "-Dspring.datasource.url=jdbc:h2:file:/tmp/testLeaktest;MODE=mysql",
+            "-Dspring.jpa.hibernate.ddl-auto=create",
+    ]
+}
+
+
