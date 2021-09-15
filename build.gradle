@@ -8,6 +8,8 @@ group = 'pl.pancordev'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+ext['spring-framework.version']='5.3.10'
+
 repositories {
     maven {
         url 'https://archiva.nowatel.com:8081/repository/internal'
